@@ -5,7 +5,8 @@ const theme = useTheme();
 theme.global.name.value = "dark";
 </script>
 <template>
-  <div>
+  <Header />
+  <div class="tw-pt-20">
     <slot></slot>
   </div>
 </template>
