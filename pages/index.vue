@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useTheme } from "vuetify";
 import { useShop } from "~/store/shop.store";
+import ChampionsLeague from "./ChampionsLeague.vue";
 
 const shop = useShop();
 
@@ -11,7 +12,6 @@ onBeforeMount(async () => {
 const theme = useTheme();
 
 async function get() {
-  // await shop.fetchProducts();
   console.log(shop.products.value);
 }
 
@@ -22,12 +22,7 @@ function toggleTheme() {
 
 <template>
   <div class="tw-container">
-    awdsadw
-    <div class="tw-h-96"></div>
-    <div class="tw-h-96"></div>
-    <div class="tw-h-96"></div>
-    <div class="tw-h-96"></div>
-    <div class="tw-h-96"></div>
+    <ChampionsLeague />
   </div>
 </template>
 <style scoped></style>

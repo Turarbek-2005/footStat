@@ -22,7 +22,7 @@ function toggleTheme() {
 
 <template>
   <v-responsive>
-    <v-btn
+    <!-- <v-btn
       :prepend-icon="
         theme.global.name.value === 'light'
           ? 'mdi-weather-sunny'
@@ -30,7 +30,7 @@ function toggleTheme() {
       "
       slim
       @click="toggleTheme"
-    ></v-btn>
+    ></v-btn> -->
     <!-- <v-btn @Click="get">Получить данные</v-btn> -->
     <!-- <div class="tw-bg-white tw-w-40 tw-flex tw-justify-center tw-h-20">
       <v-img
