@@ -13,9 +13,11 @@
     "@mdi/font": "^7.4.47",
     "@nuxtjs/tailwindcss": "^6.12.1",
     "@pinia/nuxt": "^0.5.4",
+    "appwrite": "^16.0.2",
     "nuxt": "^3.13.0",
     "vue": "latest",
-    "vue-router": "latest"
+    "vue-router": "latest",
+    "vue-uuid": "^3.0.0"
   },
   "devDependencies": {
     "vite-plugin-vuetify": "^2.0.4",
