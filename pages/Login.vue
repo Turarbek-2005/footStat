@@ -62,32 +62,38 @@ const register = async () => {
   <div
     class="tw-flex tw-items-center tw-justify-center tw-min-h-screen tw-w-full"
   >
-    <div class="tw-rounded tw-w-96 tw-p-3">
-      <h1 class="tw-text-4xl tw-font-bold tw-text-center tw-mb-5">Login</h1>
-      <form class="tw-flex tw-flex-col">
-        <v-text-field
-          v-model="formData.email"
-          placeholder="Email"
-          type="email"
-          variant="outlined"
-        />
-        <v-text-field
-          v-model="formData.password"
-          placeholder="Password"
-          type="password"
-          variant="outlined"
-        />
-        <v-text-field
-          v-model="formData.name"
-          placeholder="name"
-          type="name"
-          variant="outlined"
-        />
-        <div class="tw-flex tw-items-center tw-justify-center tw-gap-5">
+    <div class="tw-rounded tw-w-96">
+      <v-card>
+        <v-container>
+          <h2 class="tw-text-2xl tw-text-center">Login</h2>
+          <v-text-field
+            v-model="formData.email"
+            type="email"
+            label="Email"
+            variant="underlined"
+            clearable
+          />
+          <v-text-field
+            v-model="formData.password"
+            type="password"
+            label="Password"
+            variant="underlined"
+            clearable
+          />
+          <v-text-field
+            v-model="formData.name"
+            type="name"
+            label="Name"
+            variant="underlined"
+            clearable
+          />
+        </v-container>
+
+        <div class="tw-flex tw-items-center tw-justify-center tw-gap-5 tw-mb-3">
           <v-btn @click="login" class="tw-w-1/3">Login</v-btn>
           <v-btn @click="register" class="tw-w-1/3">Register</v-btn>
         </div>
-      </form>
+      </v-card>
     </div>
   </div>
 </template>

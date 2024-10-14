@@ -39,7 +39,7 @@ router.beforeEach(
 <template>
   <LayoutLoader v-if="isLoadingStore.isLoading" />
   <section v-else>
-    <Header v-if="store.isAuth" />
+    <LayoutSidebar v-if="store.isAuth" />
     <div :class="{ padding: store.isAuth }">
       <slot></slot>
     </div>
@@ -47,6 +47,7 @@ router.beforeEach(
 </template>
 <style scoped>
 .padding {
-  padding-top: 20rem;
+  padding-top: 5rem;
+  min-height: calc(100vh - 5rem);
 }
 </style>
