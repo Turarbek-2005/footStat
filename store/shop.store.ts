@@ -6,9 +6,11 @@ export const useShop = defineStore("shop", {
     products: ref<any>([]),
   }),
   actions: {
-    async fetchProducts() {
+    async fetchProducts(competitionId: string = "PL") {
       try {
-        const { data } = await useFetch("/api/football");
+        const { data } = await useFetch(
+          `/api/football?competitionId=${competitionId}`
+        );
         this.products.value = data || [];
       } catch (error) {
         console.error("Ошибка при получении данных:", error);
