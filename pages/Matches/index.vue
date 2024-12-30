@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { ref, computed, onBeforeMount } from "vue";
-const shop = useShop();
+const store = useFoot();
 const isLoading = ref(true);
 
 onBeforeMount(async () => {
   try {
-    await shop.fetchProducts("matches");
-    console.log("Матчи успешно загружены:", shop.products.value.matches);
+    await store.fetchProducts("matches");
+    console.log("Матчи успешно загружены:", store.products.value.matches);
   } catch (error) {
     console.error("Ошибка при загрузке матчей:", error);
   } finally {
@@ -15,7 +14,7 @@ onBeforeMount(async () => {
 });
 
 const groupedMatches = computed(() => {
-  const matches = shop.products.value.matches || [];
+  const matches = store.products.value.matches || [];
   return matches.reduce((acc: any, match: any) => {
     const competitionId = match.competition.id;
     if (!acc[competitionId]) {
@@ -37,36 +36,44 @@ const formatMatchTime = (dateString: string) => {
 
 <template>
   <div class="tw-container tw-pt-3">
-    <h2 class="tw-text-2xl">Today Matches</h2>
+    <h2 class="tw-text-4xl tw-mb-5">Сегодняшние важные матчи</h2>
 
-    <div v-if="isLoading">
-      <p>Загрузка матчей...</p>
-    </div>
-
-    <div v-else-if="Object.keys(groupedMatches).length === 0">
+    <LayoutLoader v-if="isLoading" class="tw-h-full" />
+    <div
+      v-else-if="!groupedMatches || Object.keys(groupedMatches).length === 0"
+    >
       <p>Нет доступных матчей на сегодня.</p>
     </div>
 
     <div
+      v-else
       v-for="(competitionGroup, competitionId) in groupedMatches"
       :key="competitionId"
       class="tw-mb-8"
     >
-      <h3 class="tw-text-xl">{{ competitionGroup.competition.name }}</h3>
-      <v-img
-        :src="competitionGroup.competition.emblem"
-        class="tw-h-20 tw-w-20"
-      />
+      <h3 class="tw-text-xl tw-mb-3">
+        {{ competitionGroup.competition.name }}
+      </h3>
+      <div
+        class="tw-h-28 tw-w-28 tw-flex tw-items-center tw-justify-center tw-bg-white tw-rounded-full tw-mb-3"
+      >
+        <v-img
+          :src="competitionGroup.competition.emblem"
+          class="tw-h-20 tw-w-20"
+        />
+      </div>
 
       <div class="tw-grid tw-grid-cols-2 tw-gap-5">
-        <v-card
+        <NuxtLink
           v-for="match in competitionGroup.matches"
           :key="match.id"
-          class="tw-p-2 tw-bg-zinc-900 tw-rounded-lg tw-cursor-pointer"
+          class="tw-p-3 tw-bg-zinc-900 tw-rounded-lg tw-cursor-pointer"
+          @Click="store.set(match)"
+          to="/Matches/Match"
         >
           <p>{{ match.homeTeam.name }} vs {{ match.awayTeam.name }}</p>
           <p>{{ formatMatchTime(match.utcDate) }}</p>
-        </v-card>
+        </NuxtLink>
       </div>
     </div>
   </div>
