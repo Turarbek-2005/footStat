@@ -47,35 +47,97 @@ watch(tab, async (newSquad) => {
             <v-card-text>
                 <v-tabs-window v-model="tab">
                     <v-tabs-window-item value="one">
-                        <div v-if="team && team.squad?.length">
-                            <div class="tw-flex tw-gap-3">
-                                <h4>Coach</h4>
-                                <label>{{ team.coach.name }}</label>
+                        <div
+                            v-if="team && team.squad?.length"
+                            class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 xl:tw-grid-cols-4 tw-gap-3"
+                        >
+                            <div
+                                class="tw-p-3 tw-flex tw-items-center tw-gap-3 tw-bg-zinc-900 tw-rounded-lg tw-cursor-pointer"
+                            >
+                                <div
+                                    class="tw-h-12 tw-w-12 tw-bg-zinc-800 tw-rounded-full tw-flex tw-justify-center tw-items-center tw-cursor-pointer"
+                                >
+                                    <v-icon
+                                        icon="mdi-account-outline"
+                                        size="35"
+                                    />
+                                </div>
+                                <div>
+                                    <h4 class="tw-text-md">Coach</h4>
+                                    <label class="tw-text-lg">{{
+                                        team.coach.name
+                                    }}</label>
+                                </div>
                             </div>
                             <div
                                 v-for="player in team.squad"
                                 :key="player.id"
-                                class="tw-flex tw-gap-3"
+                                class="tw-p-3 tw-flex tw-items-center tw-gap-3 tw-bg-zinc-900 tw-rounded-lg tw-cursor-pointer"
                             >
-                                <h4>{{ player.position }}</h4>
-                                <label>{{ player.name }}</label>
+                                <div
+                                    class="tw-h-12 tw-w-12 tw-bg-zinc-800 tw-rounded-full tw-flex tw-justify-center tw-items-center tw-cursor-pointer"
+                                >
+                                    <v-icon
+                                        icon="mdi-account-outline"
+                                        size="35"
+                                    />
+                                </div>
+                                <div>
+                                    <h4 class="tw-text-md">
+                                        {{ player.position }}
+                                    </h4>
+                                    <label class="tw-text-lg">{{
+                                        player.name
+                                    }}</label>
+                                </div>
                             </div>
                         </div>
                         <p v-else>Нет данных для отображения</p>
                     </v-tabs-window-item>
                     <v-tabs-window-item value="two">
-                        <div v-if="team && team.squad?.length">
-                            <div class="tw-flex tw-gap-3">
-                                <h4>Coach</h4>
-                                <label>{{ team.coach.name }}</label>
+                        <div
+                            v-if="team && team.squad?.length"
+                            class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 xl:tw-grid-cols-4 tw-gap-3"
+                        >
+                            <div
+                                class="tw-p-3 tw-flex tw-items-center tw-gap-3 tw-bg-zinc-900 tw-rounded-lg tw-cursor-pointer"
+                            >
+                                <div
+                                    class="tw-h-12 tw-w-12 tw-bg-zinc-800 tw-rounded-full tw-flex tw-justify-center tw-items-center tw-cursor-pointer"
+                                >
+                                    <v-icon
+                                        icon="mdi-account-outline"
+                                        size="35"
+                                    />
+                                </div>
+                                <div>
+                                    <h4 class="tw-text-md">Coach</h4>
+                                    <label class="tw-text-lg">{{
+                                        team.coach.name
+                                    }}</label>
+                                </div>
                             </div>
                             <div
                                 v-for="player in team.squad"
                                 :key="player.id"
-                                class="tw-flex tw-gap-3"
+                                class="tw-p-3 tw-flex tw-items-center tw-gap-3 tw-bg-zinc-900 tw-rounded-lg tw-cursor-pointer"
                             >
-                                <h4>{{ player.position }}</h4>
-                                <label>{{ player.name }}</label>
+                                <div
+                                    class="tw-h-12 tw-w-12 tw-bg-zinc-800 tw-rounded-full tw-flex tw-justify-center tw-items-center tw-cursor-pointer"
+                                >
+                                    <v-icon
+                                        icon="mdi-account-outline"
+                                        size="35"
+                                    />
+                                </div>
+                                <div>
+                                    <h4 class="tw-text-md">
+                                        {{ player.position }}
+                                    </h4>
+                                    <label class="tw-text-lg">{{
+                                        player.name
+                                    }}</label>
+                                </div>
                             </div>
                         </div>
                         <p v-else>Нет данных для отображения</p>

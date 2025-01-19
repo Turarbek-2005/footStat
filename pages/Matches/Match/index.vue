@@ -48,13 +48,18 @@ const formatMatchTime = (dateString: string) => {
                             >
                             <label
                                 v-if="match.status == 'IN_PLAY'"
-                                class="tw-text-sm tw-text-center"
+                                class="tw-text-md tw-text-center"
                                 >Матч идёт</label
                             >
                             <label
                                 v-if="match.status == 'FINISHED'"
-                                class="tw-text-sm tw-text-center"
+                                class="tw-text-md tw-text-center"
                                 >Матч окончен</label
+                            >
+                            <label
+                                v-if="match.status == 'PAUSED'"
+                                class="tw-text-md tw-text-center"
+                                >Перерыв</label
                             >
                         </div>
                         <label class="tw-text-5xl" v-else>{{

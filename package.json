@@ -15,6 +15,7 @@
     "@pinia/nuxt": "^0.5.4",
     "appwrite": "^16.0.2",
     "nuxt": "^3.13.0",
+    "nuxt-aos": "^1.2.5",
     "pinia": "^2.3.0",
     "vue": "latest",
     "vue-router": "latest",

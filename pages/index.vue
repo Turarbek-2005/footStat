@@ -1,10 +1,10 @@
 <script setup lang="ts">
 const store = useFoot();
 const authStore = useAuthStore();
-onBeforeMount(async () => {
-    await store.fetchProducts('standings/CL');
-    console.log(authStore.user);
-});
+// onBeforeMount(async () => {
+//     await store.fetchProducts('standings/CL');
+//     console.log(authStore.user);
+// });
 </script>
 
 <template>
