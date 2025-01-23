@@ -1,7 +1,6 @@
 <script setup lang="ts">
 const store = useFoot();
-const competitionName = store.competition;
-const competition = ref();
+const competition = store.competition;
 const data = new Date();
 const tab = ref(null);
 
@@ -22,26 +21,26 @@ const codes = [
 ];
 
 const getBackgroundImage = computed(() => {
-  const code = competition.value?.code;
+  const code = competition.code;
   if (code) {
     return `url('/competition/bg-${code.toLowerCase()}.jpg')`;
   }
   return "";
 });
 
-onBeforeMount(async () => {
-  try {
-    await store.fetchProducts(`competitions/${competitionName}`);
-    // await store.fetchProducts(
-    //     `competitions/${competition}/matches/?matchday=${data.getDay()}`
-    // );
-    competition.value = store.products.value;
-    console.log(competition.value);
-    console.log(competitionName);
-  } catch (error) {
-    console.error("Ошибка при загрузке чемпионата:", error);
-  }
-});
+// onBeforeMount(async () => {
+//   try {
+//     await store.fetchProducts(`competitions/${competitionName}`);
+//     // await store.fetchProducts(
+//     //     `competitions/${competition}/matches/?matchday=${data.getDay()}`
+//     // );
+//     competition.value = store.products.value;
+//     console.log(competition.value);
+//     console.log(competitionName);
+//   } catch (error) {
+//     console.error("Ошибка при загрузке чемпионата:", error);
+//   }
+// });
 </script>
 
 <template>
@@ -51,33 +50,36 @@ onBeforeMount(async () => {
         class="tw-container tw-gap-5 tw-relative tw-h-96 tw-flex tw-items-center"
       >
         <div
-          class="tw-h-40 tw-w-56 tw-bg-zinc-50 tw-flex tw-items-center tw-justify-center tw-rounded-lg"
+          class="tw-h-56 tw-w-56 tw-bg-zinc-700 tw-bg-opacity-50 tw-flex tw-items-center tw-justify-center tw-rounded-lg"
         >
-          <v-img :src="competition?.emblem" class="tw-h-64 tw-w-64" />
+          <v-img :src="competition?.emblem" class="tw-h-48 tw-w-48" />
         </div>
         <p class="tw-text-5xl tw-font-bold tw-uppercase">
           {{ competition?.name }}
         </p>
-        <!-- <div class="tw-w-48 tw-absolute tw-right-32 tw-bottom-0">
-          <v-img src="../../../public/competition/bg-pl.png" />
-        </div> -->
       </div>
     </div>
     <div class="tw-container tw-pt-3">
       <v-card>
         <v-tabs v-model="tab" bg-color="#18181b">
-          <v-tab value="one">Item One</v-tab>
-          <v-tab value="two">Item Two</v-tab>
-          <v-tab value="three">Item Three</v-tab>
+          <v-tab value="one" class="tw-w-1/3">Table</v-tab>
+          <v-tab value="two" class="tw-w-1/3">Matches</v-tab>
+          <v-tab value="three" class="tw-w-1/3">Scorers</v-tab>
         </v-tabs>
 
         <v-card-text>
           <v-tabs-window v-model="tab">
-            <v-tabs-window-item value="one"> One </v-tabs-window-item>
+            <v-tabs-window-item value="one"
+              ><CompetitionTable
+            /></v-tabs-window-item>
 
-            <v-tabs-window-item value="two"> Two </v-tabs-window-item>
+            <v-tabs-window-item value="two"
+              ><CompetitionMatches
+            /></v-tabs-window-item>
 
-            <v-tabs-window-item value="three"> Three </v-tabs-window-item>
+            <v-tabs-window-item value="three"
+              ><CompetitionScorers
+            /></v-tabs-window-item>
           </v-tabs-window>
         </v-card-text>
       </v-card>
