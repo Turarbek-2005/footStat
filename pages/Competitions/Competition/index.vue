@@ -88,8 +88,6 @@ const getBackgroundImage = computed(() => {
 </template>
 <style scoped>
 .bg {
-  /* background-image: url("../../../public/competition/bg-pl.jpg"); */
-  /* background-position: center; */
   background-size: cover;
   background-position: top;
   background-repeat: no-repeat;
