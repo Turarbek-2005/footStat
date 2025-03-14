@@ -36,6 +36,7 @@ const groupedMatches = computed(() => {
     if (!acc[competitionId]) {
       acc[competitionId] = {
         competition: match.competition,
+        currentMatchday: match.season.currentMatchday,
         matches: [],
       };
     }
@@ -67,7 +68,11 @@ const formatMatchTime = (dateString: string) => {
         :key="competitionId"
         class="tw-mb-8"
       >
-        <div class="tw-flex tw-items-center tw-gap-3">
+        <NuxtLink
+          class="tw-flex tw-items-center tw-gap-3 tw-cursor-pointer"
+          @Click="store.setCompetiton(competitionGroup)"
+          to="/Competitions/Competition"
+        >
           <div
             class="tw-h-24 tw-w-24 tw-flex tw-items-center tw-bg-zinc-300 tw-justify-center tw-rounded-full tw-mb-3"
           >
@@ -79,7 +84,7 @@ const formatMatchTime = (dateString: string) => {
           <h3 class="tw-text-xl tw-mb-3">
             {{ competitionGroup.competition.name }}
           </h3>
-        </div>
+        </NuxtLink>
         <div
           class="tw-grid tw-grid-cols-1 sm:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-5"
         >

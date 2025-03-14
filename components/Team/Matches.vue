@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 const store = useFoot();
 const isLoading = ref(true);
-let competition: any = store.competition;
-let currentMatchday: number =
-  competition.currentSeason.currentMatchday || competition.currentMatchday;
-console.log(competition);
+const team: any = store.team;
+// let currentMatchday: number =
+//   competition.currentSeason.currentMatchday || competition.currentMatchday;
+// console.log(competition);
 const matches = ref();
 
 const formatMatchTime = (dateString: string) => {
@@ -20,11 +20,7 @@ const formatMatchTime = (dateString: string) => {
 const loadMatches = async () => {
   isLoading.value = true;
   try {
-    await store.fetchProducts(
-      `competitions/${
-        competition.code || competition.competition.code
-      }/matches/?matchday=${currentMatchday}`
-    );
+    await store.fetchProducts(`/teams/${team.id}/matches`);
     matches.value = store.products.value.matches;
     console.log("Матчи чемпионата успешно загружены:", matches.value);
   } catch (error) {
@@ -34,16 +30,16 @@ const loadMatches = async () => {
   }
 };
 
-watch(competition, loadMatches);
+watch(team, loadMatches);
 
 onBeforeMount(loadMatches);
 </script>
 <template>
-  <h3 class="tw-text-2xl tw-mb-3 tw-ml-1">
+  <!-- <h3 class="tw-text-2xl tw-mb-3 tw-ml-1">
     Тур:
     {{ currentMatchday }}
-  </h3>
-  <v-pagination v-model="currentMatchday" :length="50" class="my-4" />
+  </h3> -->
+  <!-- <v-pagination v-model="currentMatchday" :length="50" class="my-4" /> -->
   <LayoutLoader v-if="isLoading" class="tw-h-full" />
   <div
     v-else

@@ -1,11 +1,17 @@
 <script lang="ts" setup>
 const store = useFoot();
 const competition: any = store.competition;
+console.log(competition);
+
 const standings = ref();
 
 onBeforeMount(async () => {
   try {
-    await store.fetchProducts(`competitions/${competition.code}/standings`);
+    await store.fetchProducts(
+      `competitions/${
+        competition.code || competition.competition.code
+      }/standings`
+    );
     standings.value = store.products.value.standings[0].table;
     console.log("Таблица чемпионата успешно загружена:", standings.value);
   } catch (error) {

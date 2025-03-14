@@ -4,43 +4,13 @@ const competition = store.competition;
 const data = new Date();
 const tab = ref(null);
 
-const codes = [
-  "BSA",
-  "ELC",
-  "PL",
-  "CL",
-  "EC",
-  "FL1",
-  "BL1",
-  "SA",
-  "DED",
-  "PPL",
-  "CLI",
-  "PD",
-  "WC",
-];
-
 const getBackgroundImage = computed(() => {
-  const code = competition.code;
+  const code = competition.code || competition.competition.code;
   if (code) {
     return `url('/competition/bg-${code.toLowerCase()}.jpg')`;
   }
   return "";
 });
-
-// onBeforeMount(async () => {
-//   try {
-//     await store.fetchProducts(`competitions/${competitionName}`);
-//     // await store.fetchProducts(
-//     //     `competitions/${competition}/matches/?matchday=${data.getDay()}`
-//     // );
-//     competition.value = store.products.value;
-//     console.log(competition.value);
-//     console.log(competitionName);
-//   } catch (error) {
-//     console.error("Ошибка при загрузке чемпионата:", error);
-//   }
-// });
 </script>
 
 <template>
@@ -52,10 +22,13 @@ const getBackgroundImage = computed(() => {
         <div
           class="tw-h-56 tw-w-56 tw-bg-zinc-700 tw-bg-opacity-50 tw-flex tw-items-center tw-justify-center tw-rounded-lg"
         >
-          <v-img :src="competition?.emblem" class="tw-h-48 tw-w-48" />
+          <v-img
+            :src="competition?.emblem || competition?.competition?.emblem"
+            class="tw-h-48 tw-w-48"
+          />
         </div>
         <p class="tw-text-5xl tw-font-bold tw-uppercase">
-          {{ competition?.name }}
+          {{ competition?.name || competition?.competition?.name }}
         </p>
       </div>
     </div>

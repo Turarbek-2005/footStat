@@ -17,7 +17,7 @@ export const MENU_DATA: IMenuItem[] = [
   },
   {
     name: "Teams",
-    url: "/teams",
+    url: "/teams/competitions",
     icon: "mdi-account-group",
   },
 ];
