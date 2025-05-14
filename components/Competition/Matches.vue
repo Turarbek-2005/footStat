@@ -84,9 +84,10 @@ onBeforeMount(loadMatches);
         <div
           class="tw-w-1/4 tw-pl-3 tw-h-20 tw-flex tw-flex-col tw-items-center tw-justify-center tw-border-l tw-border-zinc-700"
         >
-          <label v-if="match.status != 'FINISHED'">{{
-            formatMatchTime(match.utcDate)
-          }}</label>
+          <label
+            v-if="match.status != 'FINISHED' && match.status != 'IN_PLAY'"
+            >{{ formatMatchTime(match.utcDate) }}</label
+          >
           <b v-if="match.status == 'IN_PLAY'" class="tw-text-sm tw-text-center"
             >Матч идёт</b
           >
